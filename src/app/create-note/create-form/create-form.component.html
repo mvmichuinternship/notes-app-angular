@@ -12,9 +12,7 @@
       />
     </div>
     <div class="flex flex-col w-full gap-y-1">
-      <label for="description" class="text-xs font-light"
-        >Description</label
-      >
+      <label for="description" class="text-xs font-light">Description</label>
       <input
         type="text"
         name="description"
@@ -53,13 +51,18 @@
         name="priority"
         id="priority"
         formControlName="priority"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md"
       >
-        <option value="High" selected>High</option>
+        <option value="High" >High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
     </div>
   </div>
-  <button class="self-center sm:self-start px-3 py-1.5 bg-purple-800 opacity-25 rounded-md text-white w-32" (click)="onSubmit()"> Add Note</button>
+  <button
+    class="self-center sm:self-start px-3 py-1.5 bg-purple-800 opacity-25 rounded-md text-white w-32"
+    (click)="onSubmit()"
+  >
+    Add Note
+  </button>
 </form>
