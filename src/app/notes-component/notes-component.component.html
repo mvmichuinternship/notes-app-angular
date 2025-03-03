@@ -1,0 +1,12 @@
+<div
+  class="h-screen sm:h-screen overflow-y-scroll w-full flex flex-col border border-[1px] rounded-lg p-8 gap-y-10"
+>
+  <ng-container *ngIf="notes && notes.length > 0; else noNoteFound">
+    <div *ngFor="let note of notes">
+      <app-card [noteCard]="note" />
+    </div>
+  </ng-container>
+  <ng-template #noNoteFound>
+    <div class="text-center">No results found!</div>
+  </ng-template>
+</div>

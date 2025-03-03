@@ -1,0 +1,15 @@
+<div
+  class="w-full h-fit border border-[1px] rounded-lg p-4 flex flex-col gap-y-2"
+>
+  <!-- @if(!editNote){ -->
+  <div *ngIf="!editNote; else editElement">
+    <div class="text-lg font-semibold">Create New Note</div>
+    <app-create-form />
+  </div>
+  <!-- } @else{ -->
+  <ng-template #editElement>
+    <div class="text-lg font-semibold">Edit New Note</div>
+    <app-edit-form />
+  </ng-template>
+  <!-- } -->
+</div>

@@ -1,0 +1,65 @@
+<form action="" [formGroup]="createForm" class="w-full flex flex-col gap-y-8">
+  <div class="w-full flex flex-col sm:grid sm:grid-cols-2 sm:gap-x-8 gap-y-4">
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="title" class="text-xs font-light">Title</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="Enter title"
+        formControlName="title"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+      />
+    </div>
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="description" class="text-xs font-light"
+        >Description</label
+      >
+      <input
+        type="text"
+        name="description"
+        id="description"
+        placeholder="Enter description"
+        formControlName="description"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+      />
+    </div>
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="category" class="text-xs font-light">Category</label>
+      <input
+        type="text"
+        name="category"
+        id="category"
+        placeholder="Enter category"
+        formControlName="category"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+      />
+    </div>
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="dueDate" class="text-xs font-light">Due Date</label>
+      <input
+        type="date"
+        name="dueDate"
+        id="dueDate"
+        placeholder="Choose due date"
+        formControlName="dueDate"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+      />
+    </div>
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="priority" class="text-xs font-light">Priority</label>
+      <select
+        type="text"
+        name="priority"
+        id="priority"
+        formControlName="priority"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+      >
+        <option value="High" selected>High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+    </div>
+  </div>
+  <button class="self-center sm:self-start px-3 py-1.5 bg-purple-800 opacity-25 rounded-md text-white w-32" (click)="onSubmit()"> Add Note</button>
+</form>

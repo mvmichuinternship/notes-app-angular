@@ -1,0 +1,28 @@
+<div
+  class="relative sm:w-full cursor-pointer z-1"
+  (click)="selectEditForm(noteCard)"
+>
+  <div
+    class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur-[4px] opacity-15"
+  ></div>
+  <div
+    class="relative w-[100%] h-fit rounded-lg bg-white flex flex-col justify-start items-start gap-y-3 p-4 ring-1 ring-gray-900/5"
+  >
+    <p class="font-semibold text-normal">
+      {{ noteCard.title }}
+    </p>
+    <p class="font-normal text-xs">
+      {{ noteCard.description }}
+    </p>
+    <div class="flex justify-between w-full items-center">
+      <p class="font-normal text-xs">
+        {{ noteCard.dueDate | date : "mediumDate" }}
+      </p>
+      <app-button
+        [noteId]="noteCard.id"
+        [buttonStatus]="noteCard.isCompleted"
+        (buttonClick)="onCompletedButtonClick($event)"
+      />
+    </div>
+  </div>
+</div>
