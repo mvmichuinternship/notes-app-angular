@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { NotesServiceService } from './notes-service.service';
 import { MatIconModule } from '@angular/material/icon';
+import { MenuCompComponent } from './components/menu-comp/menu-comp.component';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     CreateNoteComponent,
     MatIconModule,
+    MenuCompComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   filtered!: Notes[];
+  isMenuOpened = false;
   // editNote!:Notes;
   constructor(private notesService: NotesServiceService) {}
 
@@ -30,12 +33,12 @@ export class AppComponent implements OnInit {
     this.notesService.filtered$.subscribe((filteredData) => {
       this.filtered = filteredData;
     });
-    // this.notesService.activeNote$.subscribe((activeNote) => {
-    //   this.editNote = activeNote;
-    // });
+  }
+  openSortMenu() {
+    this.isMenuOpened = !this.isMenuOpened;
   }
   triggerCreateNewNote() {
-    this.notesService.setActiveNote(undefined)
+    this.notesService.setActiveNote(undefined);
   }
   // constructor() {
   //   this.filtered = this.notes;

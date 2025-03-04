@@ -1,0 +1,5 @@
+::ng-deep .custom-menu {
+  --mat-menu-container-color: white;
+  --mat-menu-item-hover-state-layer-color: oklch(0.984 0.003 247.858);
+  --mat-menu-item-focus-state-layer-color: oklch(0.929 0.013 255.508);
+}

@@ -112,6 +112,60 @@ export class NotesServiceService {
   //   console.log(this.notes);
   // }
 
+  sortNotes(criteria: string) {
+    const priorityObj = ['High', 'Medium', 'Low'];
+    const progressObj = [true, false];
+    if (criteria == 'priority') {
+      this.filteredSource.next(
+        this.notes.sort(
+          (a, b) =>
+            priorityObj.findIndex((index) => index == a.priority) -
+            priorityObj.findIndex((index) => index == b.priority)
+        )
+      );
+    }
+    if (criteria == 'priority_inv') {
+      this.filteredSource.next(
+        this.notes.sort(
+          (a, b) =>
+            priorityObj.findIndex((index) => index == b.priority) -
+            priorityObj.findIndex((index) => index == a.priority)
+        )
+      );
+    }
+    if (criteria == 'progress') {
+      this.filteredSource.next(
+        this.notes.sort(
+          (a, b) =>
+            progressObj.findIndex((index) => index == a.isCompleted) -
+            progressObj.findIndex((index) => index == b.isCompleted)
+        )
+      );
+    }
+    if (criteria == 'progress_inv') {
+      this.filteredSource.next(
+        this.notes.sort(
+          (a, b) =>
+            progressObj.findIndex((index) => index == b.isCompleted) -
+            progressObj.findIndex((index) => index == a.isCompleted)
+        )
+      );
+    }
+    if (criteria == 'deadline') {
+      this.filteredSource.next(
+        this.notes.sort((a, b) => {
+          return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+        })
+      );
+    }
+    if (criteria == 'deadline_inv') {
+      this.filteredSource.next(
+        this.notes.sort((a, b) => {
+          return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
+        })
+      );
+    }
+  }
   filteredNotes(searchText: string) {
     if (!searchText) {
       this.filteredSource.next(this.notes);

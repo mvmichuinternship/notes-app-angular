@@ -1,0 +1,16 @@
+<button  [matMenuTriggerFor]="menu"><mat-icon
+    class="relative cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
+    [style.font-size.px]="30"
+    [style.width.px]="30"
+    [style.height.px]="30"
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="sort"
+    (click)="openSortMenu()"
+  ></mat-icon></button>
+
+<mat-menu #menu="matMenu" class="custom-menu" >
+  <button mat-menu-item (click)="sortByPriority()">Sort by Priority</button>
+  <button mat-menu-item (click)="sortByDeadline()">Sort by Deadline</button>
+  <button mat-menu-item (click)="sortByProgress()">Sort by Progress</button>
+</mat-menu>

@@ -7,28 +7,35 @@
       class="w-full sm:w-[40%] flex flex-col items-start justify-start gap-y-4"
     >
       <div class="w-full flex flex-col gap-y-2">
-        <app-notes-filter-component />
         <div class="flex w-full justify-between">
-
-          <mat-icon
-            class="cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
-            [style.font-size.px]="30"
-            [style.width.px]="30"
-            [style.height.px]="30"
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="sort"
-          ></mat-icon>
-          <mat-icon
-            class="cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
-            [style.font-size.px]="30"
-            [style.width.px]="30"
-            [style.height.px]="30"
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="add_circle_outline"
-            (click)="triggerCreateNewNote()"
-          ></mat-icon>
+          <div class="w-3/4">
+            <app-notes-filter-component />
+          </div>
+          <div class="flex flex-row gap-x-3">
+            <!-- <mat-icon
+              class="relative cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
+              [style.font-size.px]="30"
+              [style.width.px]="30"
+              [style.height.px]="30"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="sort"
+              (click)="openSortMenu()"
+            ></mat-icon>
+            <div class="absolute"> -->
+              <app-menu-comp (openMenu)="openSortMenu()"/>
+            <!-- </div> -->
+            <mat-icon
+              class="cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
+              [style.font-size.px]="30"
+              [style.width.px]="30"
+              [style.height.px]="30"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="add_circle_outline"
+              (click)="triggerCreateNewNote()"
+            ></mat-icon>
+          </div>
         </div>
       </div>
       <div class="w-full">
