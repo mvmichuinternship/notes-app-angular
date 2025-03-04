@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NotesServiceService } from '../notes-service.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-notes-filter-component',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './notes-filter-component.component.html',
   styleUrl: './notes-filter-component.component.css'
 })

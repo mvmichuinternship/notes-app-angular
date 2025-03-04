@@ -1,6 +1,6 @@
 
 <div *ngIf="buttonStatus else todoStatus"
-  class="px-3 py-1 z-50 bg-gradient-to-r from-purple-600 to-pink-600 opacity-25 text-sm rounded-full
+  class="px-3 py-1 z-50  bg-gradient-to-r from-purple-600 to-pink-600 opacity-25 text-sm rounded-full
    text-white"
 >
   <p class="">{{ buttonText }}</p>
@@ -8,9 +8,9 @@
 
 <ng-template #todoStatus>
     <div (click)="onButtonClick()"
-    class="p-[1px] rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-sm opacity-25 cursor-pointer text-purple-800 
+    class="p-[1px]  rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-sm opacity-25 cursor-pointer text-purple-800 
      "
   >
-    <div class="px-3 py-1 bg-white rounded-full ">{{ buttonText }}</div>
+    <div class="px-3 py-1 bg-white rounded-full hover:bg-slate-100 transition-all ease-in-out">{{ buttonText }}</div>
   </div>
 </ng-template>

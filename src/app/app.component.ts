@@ -6,6 +6,7 @@ import { Notes } from './interfaces/notes';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { NotesServiceService } from './notes-service.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -15,20 +16,27 @@ import { NotesServiceService } from './notes-service.service';
     NotesFilterComponentComponent,
     HeaderComponent,
     CreateNoteComponent,
+    MatIconModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   filtered!: Notes[];
+  // editNote!:Notes;
   constructor(private notesService: NotesServiceService) {}
 
   ngOnInit(): void {
     this.notesService.filtered$.subscribe((filteredData) => {
       this.filtered = filteredData;
     });
+    // this.notesService.activeNote$.subscribe((activeNote) => {
+    //   this.editNote = activeNote;
+    // });
   }
-
+  triggerCreateNewNote() {
+    this.notesService.setActiveNote(undefined)
+  }
   // constructor() {
   //   this.filtered = this.notes;
   // }

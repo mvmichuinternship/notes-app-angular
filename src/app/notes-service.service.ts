@@ -94,8 +94,18 @@ export class NotesServiceService {
     this.filteredSource.next((this.notes = [...this.notes]));
     console.log(this.notes);
   }
+  deleteNote(newNote: Notes) {
+    const indexToDelete = this.notes.findIndex(
+      (note) => note.id === newNote.id
+    );
+    if (indexToDelete !== -1) {
+      this.notes.splice(indexToDelete, 1);
+    }
+    this.filteredSource.next(this.notes);
+    console.log(this.notes);
+  }
 
-  setActiveNote(note: Notes) {
+  setActiveNote(note: Notes | undefined) {
     this.activeNoteSubject.next(note);
   }
   // changeNoteStatus(id: number) {

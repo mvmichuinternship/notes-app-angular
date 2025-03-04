@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe, NgIf } from '@angular/common';
 import { Notes } from '../../interfaces/notes';
 import { NotesServiceService } from '../../notes-service.service';
+import {MatIconModule} from '@angular/material/icon'
 
 @Component({
   selector: 'app-card',
-  imports: [ButtonComponent, NgIf, DatePipe],
+  imports: [ButtonComponent, NgIf, DatePipe, MatIconModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
@@ -22,7 +23,10 @@ export class CardComponent {
     // this.notesService.changeNoteStatus(id)
   }
   selectEditForm(note: Notes) {
-    // console.log('selected');
     this.notesService.setActiveNote(note);
+  }
+  selectForDeletion(note: Notes) {
+    this.notesService.deleteNote(note);
+    this.notesService.setActiveNote(undefined)
   }
 }

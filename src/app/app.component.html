@@ -1,18 +1,42 @@
 <main class="w-screen h-screen gap-y-4 flex flex-col">
   <app-header />
-  <div class="w-full flex sm:flex sm:flex-row flex-col sm:gap-x-8 gap-y-4 sm:gap-y-0 p-4">
+  <div
+    class="w-full flex sm:flex sm:flex-row flex-col sm:gap-x-8 gap-y-4 sm:gap-y-0 p-4"
+  >
     <div
-      class="w-full sm:w-[40%] flex flex-col items-start justify-start  gap-y-4"
+      class="w-full sm:w-[40%] flex flex-col items-start justify-start gap-y-4"
     >
-      <div class="w-full">
+      <div class="w-full flex flex-col gap-y-2">
         <app-notes-filter-component />
+        <div class="flex w-full justify-between">
+
+          <mat-icon
+            class="cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
+            [style.font-size.px]="30"
+            [style.width.px]="30"
+            [style.height.px]="30"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="sort"
+          ></mat-icon>
+          <mat-icon
+            class="cursor-pointer bg-purple-800 opacity-25 text-white hover:scale-[1.1] hover:opacity-50 transition ease-in-out rounded-md"
+            [style.font-size.px]="30"
+            [style.width.px]="30"
+            [style.height.px]="30"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="add_circle_outline"
+            (click)="triggerCreateNewNote()"
+          ></mat-icon>
+        </div>
       </div>
       <div class="w-full">
         <app-notes-component [notes]="filtered" />
       </div>
     </div>
     <div class="border border-[1px] h-[90%] self-center sm:block hidden"></div>
-    <div class="w-full sm:w-[60%] h-fit sm:h-[80%] self-center ">
+    <div class="w-full sm:w-[60%] h-fit sm:h-[80%] self-center">
       <app-create-note />
     </div>
   </div>

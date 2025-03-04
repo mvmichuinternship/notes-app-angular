@@ -1,16 +1,93 @@
-<div
-  class="relative sm:w-full cursor-pointer z-1"
-  (click)="selectEditForm(noteCard)"
->
+<div class="relative sm:w-full z-1" *ngIf="noteCard">
   <div
     class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur-[4px] opacity-15"
   ></div>
   <div
     class="relative w-[100%] h-fit rounded-lg bg-white flex flex-col justify-start items-start gap-y-3 p-4 ring-1 ring-gray-900/5"
   >
-    <p class="font-semibold text-normal">
-      {{ noteCard.title }}
-    </p>
+    <div class="w-full flex flex-row justify-between items-start">
+      <div class="flex flex-row gap-x-4 items-start">
+        <p class="font-semibold text-normal">
+          {{ noteCard.title }}
+        </p>
+        @if(noteCard.priority=='High'){
+
+        <div class="">
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+        </div>
+        } @else if (noteCard.priority=='Medium'){
+        <div>
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+        </div>
+        } @else if (noteCard.priority=='Low'){
+        <div>
+          <mat-icon
+            aria-hidden="false"
+            [style.font-size.px]="20"
+            [style.width.px]="20"
+            [style.height.px]="20"
+            aria-label="Example home icon"
+            fontIcon="stars"
+          ></mat-icon>
+        </div>
+        }
+      </div>
+
+      <div class="flex space-x-2 items-center">
+        <mat-icon
+          class="cursor-pointer scale-[1.1] rounded-md hover:bg-slate-100 hover:scale-[1.2] transition ease-in-out"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="edit_note"
+          (click)="selectEditForm(noteCard)"
+        ></mat-icon>
+        <mat-icon
+          class="cursor-pointer rounded-md hover:bg-slate-100 hover:scale-[1.1] transition ease-in-out"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="delete"
+          (click)="selectForDeletion(noteCard)"
+        ></mat-icon>
+      </div>
+    </div>
     <p class="font-normal text-xs">
       {{ noteCard.description }}
     </p>
