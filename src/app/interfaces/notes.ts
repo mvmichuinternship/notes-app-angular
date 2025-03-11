@@ -6,4 +6,5 @@ export interface Notes {
   isCompleted: boolean;
   priority: string;
   category: string;
+  userId:string;
 }

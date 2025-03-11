@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotesServiceService } from '../../notes-service.service';
 
 @Component({
@@ -12,23 +12,25 @@ export class CreateFormComponent implements OnInit {
   @Output() postNote = new EventEmitter();
 
   createForm!: FormGroup;
-  constructor(private fb: FormBuilder, private notesService:NotesServiceService) {}
+  constructor(
+    private fb: FormBuilder,
+    private notesService: NotesServiceService
+  ) {}
   ngOnInit() {
     this.createForm = this.fb.group({
-      
-      title: '',
-      description: '',
-      category: '',
-      dueDate: '',
-      isCompleted: false,
-      priority: '',
+      title: new FormControl('',[Validators.required]),
+      description: new FormControl('',[Validators.required]),
+      category: new FormControl('',[Validators.required]),
+      dueDate: new FormControl('',[Validators.required]),
+      isCompleted: new FormControl(false,[Validators.required]),
+      priority: new FormControl('',[Validators.required]),
     });
   }
 
-
   onSubmit() {
-    console.log(this.createForm.value);
-    this.notesService.createNewNote(this.createForm.value)
+    this.notesService.createNewNote(this.createForm.value);
+    this.createForm.reset();
+
     // this.postNote.emit(this.createForm);
   }
 }

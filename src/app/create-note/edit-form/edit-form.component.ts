@@ -11,6 +11,7 @@ import { Notes } from '../../interfaces/notes';
 })
 export class EditFormComponent implements OnInit {
   editForm!: FormGroup;
+
   // @Input() activeNoteData!:Notes
   constructor(
     private fb: FormBuilder,
@@ -19,19 +20,25 @@ export class EditFormComponent implements OnInit {
   ngOnInit() {
     // console.log(this.activeNoteData)
     this.notesService.activeNote$.subscribe((activeNote) => {
+      console.log(activeNote);
+      if (!activeNote) return;
       this.editForm = this.fb.group({
         id: activeNote.id,
         title: activeNote.title,
         description: activeNote.description,
         category: activeNote.category,
         dueDate: activeNote.dueDate,
-        isCompleted: activeNote.isCompleted,
+        isCompleted: Boolean(activeNote.isCompleted),
         priority: activeNote.priority,
       });
     });
   }
 
+  get isCompleted(): boolean {
+    return this.editForm.get('isCompleted')?.value === true;
+  }
   editNoteMethod() {
     this.notesService.editNote(this.editForm.value);
+    this.editForm.reset();
   }
 }

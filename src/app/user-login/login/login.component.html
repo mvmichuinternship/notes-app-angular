@@ -1,0 +1,62 @@
+<form action="" [formGroup]="loginForm" class="w-full flex flex-col gap-y-8">
+  <div class="w-full flex flex-col gap-y-4">
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="username" class="text-xs font-light">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        required
+        placeholder="Enter Username"
+        formControlName="username"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:border-none focus:ring-red-500  focus:ring-1':
+            username?.invalid && username?.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
+      />
+      <div
+        *ngIf="username!.invalid && (username!.dirty || username!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="username!.hasError('required')">Username is required.</div>
+        <div *ngIf="username!.hasError('email')">
+          Username must be in the correct format <i>example&#64;gmail.com</i>.
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col w-full gap-y-1">
+      <label for="password" class="text-xs font-light">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        placeholder="Enter Password"
+        formControlName="password"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            passwords?.invalid && passwords?.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
+      />
+      <div
+        *ngIf="passwords!.invalid && (passwords!.dirty || passwords!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="passwords!.hasError('required')">Password is required.</div>
+        <div *ngIf="passwords!.hasError('minlength')">
+          Password must be at least 6 characters long.
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    [disabled]="loginForm.invalid"
+    class="self-center w-full disabled:opacity-30 disabled:bg-pink-500 disabled:hover:bg-pink-500 disabled:cursor-not-allowed hover:opacity-60 transition-opacity ease-in-out duration-600 text-center cursor-pointer sm:self-start px-3 py-1.5 bg-pink-500 opacity-50 rounded-md text-white w-32"
+    (click)="onSubmit()"
+  >
+    Login
+  </button>
+</form>

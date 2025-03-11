@@ -69,8 +69,8 @@
         formControlName="isCompleted"
         class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
       >
-        <option value="true" selected>Completed</option>
-        <option value="false">Not Completed</option>
+        <option [ngValue]="true" selected>Completed</option>
+        <option [ngValue]="false">Not Completed</option>
       </select>
     </div>
   </div>

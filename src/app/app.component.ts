@@ -8,38 +8,32 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 import { NotesServiceService } from './notes-service.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuCompComponent } from './components/menu-comp/menu-comp.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './users/user.reducer';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    NotesComponentComponent,
-    NotesFilterComponentComponent,
-    HeaderComponent,
-    CreateNoteComponent,
-    MatIconModule,
-    MenuCompComponent,
-  ],
+  imports: [RouterOutlet, UserLoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  filtered!: Notes[];
-  isMenuOpened = false;
-  // editNote!:Notes;
-  constructor(private notesService: NotesServiceService) {}
-
-  ngOnInit(): void {
-    this.notesService.filtered$.subscribe((filteredData) => {
-      this.filtered = filteredData;
-    });
-  }
-  openSortMenu() {
-    this.isMenuOpened = !this.isMenuOpened;
-  }
-  triggerCreateNewNote() {
-    this.notesService.setActiveNote(undefined);
-  }
+export class AppComponent {
+  // filtered!: Notes[];
+  // isMenuOpened = false;
+  // // editNote!:Notes;
+  // constructor(private notesService: NotesServiceService) {}
+  // ngOnInit(): void {
+  //   this.notesService.filtered$.subscribe((filteredData) => {
+  //     this.filtered = filteredData;
+  //   });
+  // }
+  // openSortMenu() {
+  //   this.isMenuOpened = !this.isMenuOpened;
+  // }
+  // triggerCreateNewNote() {
+  //   this.notesService.setActiveNote(undefined);
+  // }
   // constructor() {
   //   this.filtered = this.notes;
   // }

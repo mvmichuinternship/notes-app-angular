@@ -26,7 +26,7 @@ export class CardComponent {
     this.notesService.setActiveNote(note);
   }
   selectForDeletion(note: Notes) {
-    this.notesService.deleteNote(note);
     this.notesService.setActiveNote(undefined)
+    this.notesService.deleteNote(note);
   }
 }
