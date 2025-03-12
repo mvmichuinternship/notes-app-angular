@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { User } from './interfaces/user';
 import { AppState } from './app.state';
 import { selectLoginUser } from './users/user.selector';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -155,7 +156,7 @@ export class NotesServiceService {
     },
   ];
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private messageService:MessageService) {
     this.filteredSource.next(this.notes);
     this.activeNoteSubject.next(undefined);
     this.currentUser$ = this.store.select(selectLoginUser);
@@ -193,17 +194,27 @@ export class NotesServiceService {
         },
       ])
     );
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Successfully created note!',
+    });
   }
   editNote(newNote: Notes) {
     const toBeEdited = this.filteredWithUser.findIndex(
       (note) => note.id === newNote.id
     );
-    console.log(newNote, toBeEdited);
+    // console.log(newNote, toBeEdited);
     this.filteredWithUser[toBeEdited] = newNote;
     this.filteredSource.next(
       (this.filteredWithUser = [...this.filteredWithUser])
     );
-    console.log(this.filteredWithUser);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Successfully edited note!',
+    });
+    // console.log(this.filteredWithUser);
   }
   deleteNote(newNote: Notes) {
     const indexToDelete = this.filteredWithUser.findIndex(
@@ -213,7 +224,12 @@ export class NotesServiceService {
       this.filteredWithUser.splice(indexToDelete, 1);
     }
     this.filteredSource.next(this.filteredWithUser);
-    console.log(this.filteredWithUser);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Successfully deleted note!',
+    });
+    // console.log(this.filteredWithUser);
   }
 
   setActiveNote(note: Notes | undefined) {

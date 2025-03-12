@@ -5,37 +5,25 @@ import { LoginAction, LoginError, LoginSuccess } from './user.action';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class LoginEffect {
   private actions$ = inject(Actions);
-  private userService = inject(UserServiceService)
-  constructor(
-    
-    private router: Router
-  ) {
-    console.log('Actions service:', this.actions$);
+  private userService = inject(UserServiceService);
+  constructor(private messageService: MessageService, private router: Router) {
+    // console.log('Actions service:', this.actions$);
   }
-
-  // debug$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     tap(action => {
-  //       if (action) {
-  //         console.log('Action dispatched:', action.type);
-  //       }
-  //     }),
-  //     map(() => ({ type: '[Debug] Action Logged' }))
-  //   )
-  // , { dispatch: false });
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LoginAction),
-      tap((action) => console.log('Login action received:', action)),
+      // tap((action) => console.log('Login action received:', action)),
       switchMap((action) =>
         this.userService.login(action).pipe(
-          tap((result) => console.log('Service returned:', result)),
+          // tap((result) => console.log('Service returned:', result)),
           map(({ user, token }) => LoginSuccess({ user, token })),
+
           catchError((error) => {
             console.error('Login error:', error);
             return of(LoginError({ error: error.message }));
@@ -48,8 +36,30 @@ export class LoginEffect {
     () =>
       this.actions$.pipe(
         ofType(LoginSuccess),
-        tap(() => this.router.navigate(['/dashboard']))
+        tap(async({ user, token }) => {
+          localStorage.setItem('auth_token', token);
+          await this.router.navigate(['/dashboard']);
+          setTimeout(() => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Login successful',
+            });
+          }, 0);
+  
+        })
       ),
     { dispatch: false }
   );
+
+  // showLoginSuccessToast$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(LoginSuccess),
+  //       tap(() =>
+          
+  //       )
+  //     ),
+  //   { dispatch: false }
+  // );
 }

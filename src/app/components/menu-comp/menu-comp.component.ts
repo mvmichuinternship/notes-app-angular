@@ -24,7 +24,7 @@ export class MenuCompComponent {
   }
   sortByPriority() {
     this.priority = !this.priority;
-    console.log(this.priority);
+    // console.log(this.priority);
     if (this.priority) {
       this.notesService.sortNotes('priority');
     }
@@ -34,7 +34,7 @@ export class MenuCompComponent {
   }
   sortByDeadline() {
     this.deadline = !this.deadline;
-    console.log(this.deadline);
+    // console.log(this.deadline);
     if (this.deadline) {
       this.notesService.sortNotes('deadline');
     }
@@ -44,7 +44,7 @@ export class MenuCompComponent {
   }
   sortByProgress() {
     this.progress = !this.progress;
-    console.log(this.progress);
+    // console.log(this.progress);
     if (this.progress) {
       this.notesService.sortNotes('progress');
     }

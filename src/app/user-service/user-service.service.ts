@@ -17,8 +17,8 @@ export class UserServiceService {
       firstName: 'Michael',
       lastName: 'Johnson',
       image: 'https://randomuser.me/api/portraits/men/42.jpg',
-      username: 'mjohnson',
-      password: 'SecurePass789!',
+      username: 'mridu@gmail.com',
+      password: 'mridu123',
     },
     {
       id: 'u67890',
@@ -102,7 +102,7 @@ export class UserServiceService {
         user.password == loginData.password
     );
     if (userExists) {
-      console.log(userExists);
+      // console.log(userExists);
       const token = `mock-jwt-token-${Math.random().toString(36).substring(2)}`;
       // this.router.navigate(['/dashboard']);
       return of({ user: userExists, token });

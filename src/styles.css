@@ -2,12 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
 
-:root{
-    --text-color: #1e293b;
+:root {
+  --text-color: #1e293b;
 }
-body{
-    color: var(--text-color);
+body {
+  color: var(--text-color);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

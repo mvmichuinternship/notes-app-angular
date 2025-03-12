@@ -3,7 +3,10 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { importProvidersFrom, isDevMode } from '@angular/core';
 import { provideStore, StoreModule } from '@ngrx/store';
-import { provideStoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {
+  provideStoreDevtools,
+  StoreDevtoolsModule,
+} from '@ngrx/store-devtools';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { loginReducer } from './app/users/user.reducer';
 import { provideRouter } from '@angular/router';
@@ -17,14 +20,12 @@ bootstrapApplication(AppComponent, {
     ...(appConfig.providers || []),
     // provideRouter(routes),
     importProvidersFrom(
-      
       StoreModule.forRoot({ user: loginReducer }),
       // EffectsModule.forRoot([LoginEffect]),
       StoreDevtoolsModule.instrument({
         maxAge: 25,
-        logOnly: !isDevMode()
+        logOnly: !isDevMode(),
       })
-    )
-  ]
-})
-.catch((err) => console.error(err));
+    ),
+  ],
+}).catch((err) => console.error(err));

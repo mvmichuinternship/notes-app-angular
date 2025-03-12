@@ -7,6 +7,7 @@ import { NotesComponentComponent } from '../notes-component/notes-component.comp
 import { NotesFilterComponentComponent } from '../notes-filter-component/notes-filter-component.component';
 import { Notes } from '../interfaces/notes';
 import { NotesServiceService } from '../notes-service.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import { NotesServiceService } from '../notes-service.service';
     CreateNoteComponent,
     MatIconModule,
     MenuCompComponent,
+    ToastModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

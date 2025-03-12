@@ -11,10 +11,11 @@ import { MenuCompComponent } from './components/menu-comp/menu-comp.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './users/user.reducer';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, UserLoginComponent],
+  imports: [RouterOutlet, UserLoginComponent, ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

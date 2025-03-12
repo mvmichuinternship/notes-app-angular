@@ -41,17 +41,15 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.store
-      .select(selectAuthToken)
-      .pipe(
-        map((token) => {
-          console.log(token)
-          if (!token) {
-            this.router.navigate(['/login']);
-            return false;
-          }
-          return true;
-        })
-      );
+    return this.store.select(selectAuthToken).pipe(
+      map((token) => {
+        // console.log(token)
+        if (!token) {
+          this.router.navigate(['/login']);
+          return false;
+        }
+        return true;
+      })
+    );
   }
 }
