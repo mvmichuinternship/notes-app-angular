@@ -8,8 +8,18 @@
         id="title"
         placeholder="Enter title"
         formControlName="title"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            title?.invalid && title?.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
       />
+      <div
+        *ngIf="title!.invalid && (title!.dirty || title!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="title!.hasError('required')">Title is required.</div>
+      </div>
     </div>
     <div class="flex flex-col w-full gap-y-1">
       <label for="description" class="text-xs font-light">Description</label>
@@ -19,8 +29,22 @@
         id="description"
         placeholder="Enter description"
         formControlName="description"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            description!.invalid && description!.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
       />
+      <div
+        *ngIf="
+          description!.invalid && (description!.dirty || description!.touched)
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="description!.hasError('required')">
+          Description is required.
+        </div>
+      </div>
     </div>
     <div class="flex flex-col w-full gap-y-1">
       <label for="category" class="text-xs font-light">Category</label>
@@ -30,8 +54,18 @@
         id="category"
         placeholder="Enter category"
         formControlName="category"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            category!.invalid && category!.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
       />
+      <div
+        *ngIf="category!.invalid && (category!.dirty || category!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="category!.hasError('required')">Category is required.</div>
+      </div>
     </div>
     <div class="flex flex-col w-full gap-y-1">
       <label for="dueDate" class="text-xs font-light">Due Date</label>
@@ -41,8 +75,18 @@
         id="dueDate"
         placeholder="Choose due date"
         formControlName="dueDate"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            dueDate!.invalid && dueDate!.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md placeholder:text-sm focus:outline-pink-300 focus:outline-1"
       />
+      <div
+        *ngIf="dueDate!.invalid && (dueDate!.dirty || dueDate!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="dueDate!.hasError('required')">Approximate Due Date is required.</div>
+      </div>
     </div>
     <div class="flex flex-col w-full gap-y-1">
       <label for="priority" class="text-xs font-light">Priority</label>
@@ -51,16 +95,27 @@
         name="priority"
         id="priority"
         formControlName="priority"
-        class="w-full px-2 py-1.5 border border-[1px] rounded-md"
+        [ngClass]="{
+          ' focus:outline-none border-red-500 focus:ring-red-500 focus:border-none focus:ring-1':
+            priority!.invalid && priority!.touched
+        }"
+        class="w-full px-2 py-1.5 border border-[1px] rounded-md focus:outline-pink-300 focus:outline-1"
       >
-        <option value="High" >High</option>
+        <option selected value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
+      <div
+        *ngIf="priority!.invalid && (priority!.dirty || priority!.touched)"
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="priority!.hasError('required')">Priority is required.</div>
+      </div>
     </div>
   </div>
   <button
-    class="self-center hover:opacity-50 transition-opacity ease-in-out duration-600 sm:self-start px-3 py-1.5 bg-purple-800 opacity-25 rounded-md text-white w-32"
+  [disabled]="createForm.invalid"
+    class="self-center disabled:opacity-25 disabled:bg-purple-800 disabled:hover:bg-purple-800 disabled:cursor-not-allowed hover:opacity-50 transition-opacity ease-in-out duration-600 sm:self-start px-3 py-1.5 bg-purple-800 opacity-25 rounded-md text-white w-32"
     (click)="onSubmit()"
   >
     Add Note

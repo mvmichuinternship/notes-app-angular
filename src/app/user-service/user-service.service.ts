@@ -89,7 +89,7 @@ export class UserServiceService {
       firstName: 'Isabella',
       lastName: 'Miller',
       image: 'https://randomuser.me/api/portraits/women/82.jpg',
-      username: 'imiller',
+      username: 'imiller@gmail.com',
       password: 'Isa!M1ll3r',
     },
   ];

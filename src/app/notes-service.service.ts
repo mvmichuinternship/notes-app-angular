@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Notes } from './interfaces/notes';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { User } from './interfaces/user';
 import { AppState } from './app.state';
@@ -18,6 +18,8 @@ export class NotesServiceService {
   filteredWithUser: Notes[] = [];
   currentUser$!: Observable<User | null>;
   currentUser!: User;
+  private resetFormSubject = new Subject<void>();
+  resetForm$ = this.resetFormSubject.asObservable();
   notes = [
     {
       id: 1,
@@ -216,6 +218,9 @@ export class NotesServiceService {
 
   setActiveNote(note: Notes | undefined) {
     this.activeNoteSubject.next(note);
+    if (note === undefined) {
+      this.resetFormSubject.next();
+    }
   }
   // changeNoteStatus(id: number) {
   //   console.log(this.notes);
